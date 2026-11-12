@@ -185,6 +185,30 @@ To validate the pipeline, an SSH brute-force / invalid-user login attack was sim
 bash
 ssh hacker@<WAZUH_SERVER_IP>
 
+MITRE ATT&CK Mapping & Validation
+
+To validate the pipeline, I conducted a controlled SSH authentication-failure simulation in my lab environment.
+
+I used the MITRE ATT&CK Framework to contextualize the observed activity:
+
+🔹 Tactic: Credential Access (TA0006)
+
+🔹 Technique: Brute Force (T1110)
+
+🔹 Sub-technique: Password Guessing (T1110.001), where applicable.
+
+Results:
+
+✅ Wazuh detected and recorded SSH authentication failures.
+
+✅ Relevant security events were captured and indexed in the Wazuh Dashboard.
+
+✅ The Python alerting service retrieved and filtered security events based on severity.
+
+✅ Telegram delivered notifications containing the source IP, targeted username, Wazuh Rule ID, severity level and raw log information.
+
+✅ The pipeline demonstrated automated security event monitoring and notification.
+
 
 ### Results
 * *Wazuh Dashboard:* Captured and indexed the authentication failures under sshd threat hunting events (Rule ID 5710 / 5763).
